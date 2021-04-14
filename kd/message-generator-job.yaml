@@ -41,7 +41,7 @@ spec:
                   secretKeyRef:
                     name: {{.KUBE_NAMESPACE}}-ukvi-complaint-sqs
                     key: access_key_id
-              - name: AWS__SQS_SECRET_KEY
+              - name: AWS_SQS_SECRET_KEY
                 valueFrom:
                   secretKeyRef:
                     name: {{.KUBE_NAMESPACE}}-ukvi-complaint-sqs
