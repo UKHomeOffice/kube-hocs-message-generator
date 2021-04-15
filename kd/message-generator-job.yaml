@@ -34,11 +34,7 @@ spec:
               cpu: 200m
           env:
             - name: JAVA_OPTS
-              value: >
-                -Djavax.net.ssl.trustStore=/etc/keystore/truststore.jks
-                -Dhttps.proxyHost=hocs-outbound-proxy.{{.KUBE_NAMESPACE}}.svc.cluster.local
-                -Dhttps.proxyPort=31290 
-                -Dhttp.nonProxyHosts=*.{{.KUBE_NAMESPACE}}.svc.cluster.local
+              value: '-Djavax.net.ssl.trustStore=/etc/keystore/truststore.jks -Dhttps.proxyHost=hocs-outbound-proxy.{{.KUBE_NAMESPACE}}.svc.cluster.local -Dhttps.proxyPort=31290 -Dhttp.nonProxyHosts=*.svc.cluster.local'
             - name: JDK_TRUST_FILE
               value: '/etc/keystore/truststore.jks'
             - name: SPRING_PROFILES_ACTIVE
