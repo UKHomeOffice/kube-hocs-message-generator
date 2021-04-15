@@ -27,10 +27,10 @@ spec:
                 name: hocs-queue-config
           resources:
             limits:
-              memory: 32Mi
+              memory: 1024Mi
               cpu: 400m
             requests:
-              memory: 16Mi
+              memory: 1024Mi
               cpu: 200m
           env:
             - name: JAVA_OPTS
