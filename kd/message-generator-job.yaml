@@ -56,7 +56,7 @@ spec:
             - name: RUN_CONFIG_QUEUE_NAME
               value: '{{.KUBE_NAMESPACE}}-ukvi-complaint-queue'
             - name: RUN_CONFIG_NUM_MESSAGES
-              value: {{.RUN_CONFIG_NUM_MESSAGES}}
+              value: '{{.RUN_CONFIG_NUM_MESSAGES}}'
             - name: RUN_CONFIG_COMPLAINT_TYPE
               value: {{.RUN_CONFIG_COMPLAINT_TYPE}}
       restartPolicy: Never
