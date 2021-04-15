@@ -10,7 +10,6 @@ spec:
     metadata:
       labels:
         name: hocs-message-generator
-        role: hocs-backend
         version: {{.VERSION}}
     spec:
       containers:
