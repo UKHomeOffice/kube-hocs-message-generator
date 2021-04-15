@@ -25,10 +25,17 @@ spec:
             envFrom:
               - configMapRef:
                   name: hocs-queue-config
+            resources:
+              limits:
+                memory: 32Mi
+                cpu: 400m
+              requests:
+                memory: 16Mi
+                cpu: 200m
             env:
               - name: JAVA_OPTS
                 value: >
-                  -Xms768m -Xmx4096m -XX:+UseG1GC -Djavax.net.ssl.trustStore=/etc/keystore/truststore.jks
+                  -Djavax.net.ssl.trustStore=/etc/keystore/truststore.jks
                   -Dhttps.proxyHost=hocs-outbound-proxy.{{.KUBE_NAMESPACE}}.svc.cluster.local
                   -Dhttps.proxyPort=31290 
                   -Dhttp.nonProxyHosts=*.{{.KUBE_NAMESPACE}}.svc.cluster.local
