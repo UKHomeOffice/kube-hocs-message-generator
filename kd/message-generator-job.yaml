@@ -5,6 +5,7 @@ metadata:
   labels:
     version: {{.VERSION}}
 spec:
+  ttlSecondsAfterFinished: 0
   template:
     metadata:
       labels:
