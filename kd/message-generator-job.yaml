@@ -57,7 +57,9 @@ spec:
               value: '{{.KUBE_NAMESPACE}}-ukvi-complaint-queue'
             - name: RUN_CONFIG_NUM_MESSAGES
               value: {{.RUN_CONFIG_NUM_MESSAGES}}
+            {{if .RUN_CONFIG_COMPLAINT_TYPE}}
             - name: RUN_CONFIG_COMPLAINT_TYPE
               value: {{.RUN_CONFIG_COMPLAINT_TYPE}}
+            {{end}}      
       restartPolicy: Never
   backoffLimit: 2
