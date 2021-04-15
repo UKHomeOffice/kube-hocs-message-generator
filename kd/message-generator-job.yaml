@@ -1,0 +1,63 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: hocs-message-generator
+  labels:
+    version: {{.VERSION}}
+spec:
+  ttlSecondsAfterFinished: 0
+  template:
+    metadata:
+      labels:
+        name: hocs-message-generator
+        version: {{.VERSION}}
+    spec:
+      containers:
+        - name: hocs-message-generator
+            image: quay.io/ukhomeofficedigital/hocs-message-generator:{{.VERSION}}
+            imagePullPolicy: Always
+            securityContext:
+              runAsNonRoot: true
+              capabilities:
+                drop:
+                  - SETUID
+                  - SETGID
+            envFrom:
+              - configMapRef:
+                  name: hocs-queue-config
+            resources:
+              limits:
+                memory: 32Mi
+                cpu: 400m
+              requests:
+                memory: 16Mi
+                cpu: 200m
+            env:
+              - name: JAVA_OPTS
+                value: >
+                  -Djavax.net.ssl.trustStore=/etc/keystore/truststore.jks
+                  -Dhttps.proxyHost=hocs-outbound-proxy.{{.KUBE_NAMESPACE}}.svc.cluster.local
+                  -Dhttps.proxyPort=31290 
+                  -Dhttp.nonProxyHosts=*.{{.KUBE_NAMESPACE}}.svc.cluster.local
+              - name: JDK_TRUST_FILE
+                value: '/etc/keystore/truststore.jks'
+              - name: SPRING_PROFILES_ACTIVE
+                value: 'sqs'
+              - name: AWS_SQS_ACCESS_KEY
+                valueFrom:
+                  secretKeyRef:
+                    name: {{.KUBE_NAMESPACE}}-ukvi-complaint-sqs
+                    key: access_key_id
+              - name: AWS_SQS_SECRET_KEY
+                valueFrom:
+                  secretKeyRef:
+                    name: {{.KUBE_NAMESPACE}}-ukvi-complaint-sqs
+                    key: secret_access_key
+              - name: RUN_CONFIG_QUEUE_NAME
+                value: '{{.KUBE_NAMESPACE}}-ukvi-complaint-queue'
+              - name: RUN_CONFIG_NUM_MESSAGES
+                value: {{.RUN_CONFIG_NUM_MESSAGES}}
+              - name: RUN_CONFIG_COMPLAINT_TYPE
+                value: {{.RUN_CONFIG_COMPLAINT_TYPE}}
+      restartPolicy: Never
+    backoffLimit: 2
