@@ -39,8 +39,8 @@ spec:
               command:
                 - cat
                 - /app/scripts/run.sh
-            initialDelaySeconds: 10
-            periodSeconds: 5
+            initialDelaySeconds: 30
+            periodSeconds: 10
           livenessProbe:
             exec:
               command:
