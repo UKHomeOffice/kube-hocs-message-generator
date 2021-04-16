@@ -7,17 +7,13 @@ metadata:
     version: {{.VERSION}}
 spec:
   ttlSecondsAfterFinished: 0
-  selector:
-    matchLabels:
-      name: hocs-message-generator
-      role: hocs-backend
-      version: {{.VERSION}}
   template:
     metadata:
       labels:
         name: hocs-message-generator
         role: hocs-backend
         version: {{.VERSION}}
+        deployedAt: '{{.DEPLOYED_AT}}'
     spec:
       containers:
         - name: hocs-message-generator
@@ -39,20 +35,20 @@ spec:
             requests:
               memory: 512Mi
               cpu: 200m
-          livenessProbe:
-            exec:
-              command:
-                - cat
-                - /app/scripts/run.sh
-            initialDelaySeconds: 5
-            periodSeconds: 5
           readinessProbe:
             exec:
               command:
                 - cat
                 - /app/scripts/run.sh
-            initialDelaySeconds: 5
-            periodSeconds: 5          
+            initialDelaySeconds: 10
+            periodSeconds: 5
+          livenessProbe:
+            exec:
+              command:
+              - cat
+              - /app/scripts/run.sh
+            initialDelaySeconds: 10
+            periodSeconds: 5
           env:
             - name: JAVA_OPTS
               value: '-Djavax.net.ssl.trustStore=/etc/keystore/truststore.jks -Dhttps.proxyHost=hocs-outbound-proxy.{{.KUBE_NAMESPACE}}.svc.cluster.local -Dhttps.proxyPort=31290 -Dhttp.nonProxyHosts=*.svc.cluster.local'
