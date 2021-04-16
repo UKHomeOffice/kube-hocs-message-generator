@@ -17,3 +17,7 @@ cd kd || exit 1
 
 kd --timeout 1m \
     -f message-generator-job.yaml 
+
+kd --timeout 1m \
+    --delete \
+    -f message-generator-job.yaml 

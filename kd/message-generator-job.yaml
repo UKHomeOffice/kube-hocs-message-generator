@@ -1,21 +1,21 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: hocs-message-generator
+  name: hocs-message-generator-{{.DEPLOYED_AT}}
   labels:
-    name: hocs-message-generator
+    name: hocs-message-generator-{{.DEPLOYED_AT}}
     version: {{.VERSION}}
 spec:
   ttlSecondsAfterFinished: 0
   template:
     metadata:
       labels:
-        name: hocs-message-generator
+        name: hocs-message-generator-{{.DEPLOYED_AT}}
         role: hocs-backend
         version: {{.VERSION}}
     spec:
       containers:
-        - name: hocs-message-generator
+        - name: hocs-message-generator-{{.DEPLOYED_AT}}
           image: quay.io/ukhomeofficedigital/hocs-message-generator:{{.VERSION}}
           imagePullPolicy: Always
           securityContext:
@@ -71,7 +71,5 @@ spec:
               value: '{{.RUN_CONFIG_NUM_MESSAGES}}'
             - name: RUN_CONFIG_COMPLAINT_TYPE
               value: {{.RUN_CONFIG_COMPLAINT_TYPE}}
-            - name: 'DEPLOYED_AT_{{.DEPLOYED_AT}}'
-              value: '{{.DEPLOYED_AT}}'
       restartPolicy: Never
   backoffLimit: 2
