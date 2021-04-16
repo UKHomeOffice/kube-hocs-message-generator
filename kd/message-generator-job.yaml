@@ -7,6 +7,9 @@ metadata:
     version: {{.VERSION}}
 spec:
   ttlSecondsAfterFinished: 0
+  selector:
+    matchLabels:
+      job-name: hocs-message-generator
   template:
     metadata:
       labels:
