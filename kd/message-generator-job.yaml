@@ -5,7 +5,6 @@ metadata:
   labels:
     name: hocs-message-generator
     version: {{.VERSION}}
-    deployedAt: '{{.DEPLOYED_AT}}'
 spec:
   ttlSecondsAfterFinished: 0
   template:
@@ -72,5 +71,7 @@ spec:
               value: '{{.RUN_CONFIG_NUM_MESSAGES}}'
             - name: RUN_CONFIG_COMPLAINT_TYPE
               value: {{.RUN_CONFIG_COMPLAINT_TYPE}}
+            - name: {{.DEPLOYED_AT}}
+              value: {{.DEPLOYED_AT}}
       restartPolicy: Never
   backoffLimit: 2
