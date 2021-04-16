@@ -15,9 +15,5 @@ export KUBE_CERTIFICATE_AUTHORITY="https://raw.githubusercontent.com/UKHomeOffic
 
 cd kd || exit 1
 
-kd --timeout 1m \
-    -f message-generator-job.yaml 
-
-kd --timeout 1m \
-    --delete \
+kd --timeout 3m \
     -f message-generator-job.yaml 

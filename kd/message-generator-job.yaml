@@ -6,7 +6,7 @@ metadata:
     name: hocs-message-generator-{{.DEPLOYED_AT}}
     version: {{.VERSION}}
 spec:
-  ttlSecondsAfterFinished: 0
+  ttlSecondsAfterFinished: 60
   template:
     metadata:
       labels:
