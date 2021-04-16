@@ -39,4 +39,4 @@ If RUN_CONFIG_COMPLAINT_TYPE is set to one of the types above, then that message
 drone1 build promote -p VERSION=branch-epic_HOCS-COMP -p RUN_CONFIG_COMPLAINT_TYPE=STAFF_BEHAVIOUR -p RUN_CONFIG_NUM_MESSAGES=3 ukhomeoffice/hocs-message-generator $(drone1 build last ukhomeoffice/hocs-case-creator --format "{{ .Number }}" --branch main) hocs-delta
 
 ```
-then 3 stafff behaviour complaints will be sent.
+then 3 staff behaviour complaints will be sent.
