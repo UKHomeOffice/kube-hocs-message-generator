@@ -3,11 +3,12 @@ kind: Job
 metadata:
   name: hocs-message-generator
   labels:
+    name: hocs-message-generator
     version: {{.VERSION}}
 spec:
   selector:
-    name: hocs-message-generator
-    labels:
+    matchLabels:
+      name: hocs-message-generator
       version: {{.VERSION}}
   ttlSecondsAfterFinished: 0
   template:
