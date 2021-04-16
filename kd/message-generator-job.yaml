@@ -5,6 +5,7 @@ metadata:
   labels:
     name: hocs-message-generator
     version: {{.VERSION}}
+    deployedAt: '{{.DEPLOYED_AT}}'
 spec:
   ttlSecondsAfterFinished: 0
   template:
@@ -13,7 +14,6 @@ spec:
         name: hocs-message-generator
         role: hocs-backend
         version: {{.VERSION}}
-        deployedAt: '{{.DEPLOYED_AT}}'
     spec:
       containers:
         - name: hocs-message-generator
