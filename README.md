@@ -3,7 +3,7 @@ Kubernetes configuration of the message generator project
 
 ## Usage 
 The basic drone command is :
-
+(Assuming your drone 1 command is drone1 (if not then substitute with your alias))
 ```sh
 drone1 build promote -p VERSION=branch-epic_HOCS-COMP ukhomeoffice/hocs-message-generator $(drone1 build last ukhomeoffice/hocs-case-creator --format "{{ .Number }}" --branch main) hocs-delta
 ```
