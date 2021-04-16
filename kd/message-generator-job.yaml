@@ -9,7 +9,9 @@ spec:
   ttlSecondsAfterFinished: 0
   selector:
     matchLabels:
-      job-name: hocs-message-generator
+      name: hocs-message-generator
+      role: hocs-backend
+      version: {{.VERSION}}
   template:
     metadata:
       labels:
