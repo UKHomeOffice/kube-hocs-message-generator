@@ -3,9 +3,9 @@ Kubernetes configuration of the message generator project
 
 ## Usage 
 The basic drone command is :
-(Assuming your drone 1 command is drone1 (if not then substitute with your alias))
-```sh
-drone1 build promote -p VERSION=branch-epic_HOCS-COMP ukhomeoffice/hocs-message-generator $(drone1 build last ukhomeoffice/hocs-case-creator --format "{{ .Number }}" --branch main) hocs-delta
+
+```console
+drone build promote -p VERSION=branch-epic_HOCS-COMP ukhomeoffice/hocs-message-generator $(drone1 build last ukhomeoffice/hocs-message-generator --format "{{ .Number }}" --branch main) hocs-delta
 ```
 
 This command will send 1 randomly selected message to the hocs-delta namespace. This should be changed as required.
@@ -29,14 +29,14 @@ There are two additional parameters :
 
 if RUN_CONFIG_NUM_MESSAGES is set e.g.
 
-```sh
-drone1 build promote -p VERSION=branch-epic_HOCS-COMP -p RUN_CONFIG_NUM_MESSAGES=2 ukhomeoffice/hocs-message-generator $(drone1 build last ukhomeoffice/hocs-case-creator --format "{{ .Number }}" --branch main) hocs-delta
+```console
+drone build promote -p VERSION=branch-epic_HOCS-COMP -p RUN_CONFIG_NUM_MESSAGES=2 ukhomeoffice/hocs-message-generator $(drone1 build last ukhomeoffice/hocs-message-generator --format "{{ .Number }}" --branch main) hocs-delta
 ```
 then 2 random messages will be sent.
 
 If RUN_CONFIG_COMPLAINT_TYPE is set to one of the types above, then that message type is sent. e.g.
-```shell
-drone1 build promote -p VERSION=branch-epic_HOCS-COMP -p RUN_CONFIG_COMPLAINT_TYPE=STAFF_BEHAVIOUR -p RUN_CONFIG_NUM_MESSAGES=3 ukhomeoffice/hocs-message-generator $(drone1 build last ukhomeoffice/hocs-case-creator --format "{{ .Number }}" --branch main) hocs-delta
 
+```console
+drone build promote -p VERSION=branch-epic_HOCS-COMP -p RUN_CONFIG_COMPLAINT_TYPE=STAFF_BEHAVIOUR -p RUN_CONFIG_NUM_MESSAGES=3 ukhomeoffice/hocs-message-generator $(drone1 build last ukhomeoffice/hocs-message-generator --format "{{ .Number }}" --branch main) hocs-delta
 ```
 then 3 staff behaviour complaints will be sent.
