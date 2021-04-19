@@ -6,7 +6,7 @@ export KUBE_SERVER="https://kube-api-notprod.notprod.acp.homeoffice.gov.uk"
 export KUBE_TOKEN=${KUBE_TOKEN}
 export VERSION=${VERSION}
 export NAME="hocs-message-generator"
-# ise epoch time to create a unique job
+# use epoch time to create a unique job
 export DEPLOYED_AT=`date +'%s'`
 
 export RUN_CONFIG_NUM_MESSAGES=${RUN_CONFIG_NUM_MESSAGES=1}
@@ -19,7 +19,7 @@ cd kd || exit 1
 kd --timeout 3m \
     -f message-generator-job.yaml 
 
-kubectl wait job/${NAME}-${DEPLOYED_AT} --namespace=${KUBE_NAMESPACE} --for=condition=complete
+kubectl wait job/${NAME}-${DEPLOYED_AT} --token=${KUBETOKEN} --namespace=${KUBE_NAMESPACE} --for=condition=complete
 
 kd --timeout 3m \
     --delete \
