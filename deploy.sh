@@ -19,7 +19,7 @@ cd kd || exit 1
 kd --timeout 3m \
     -f message-generator-job.yaml 
 
-kubectl wait job/${NAME}-${DEPLOYED_AT} --token=${KUBE_TOKEN} --namespace=${KUBE_NAMESPACE} --for=condition=complete
+kd run wait job/${NAME}-${DEPLOYED_AT} --for=condition=complete
 
 kd --timeout 3m \
     --delete \
