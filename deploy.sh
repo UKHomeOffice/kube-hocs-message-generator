@@ -19,7 +19,8 @@ cd kd || exit 1
 kd --timeout 3m \
     -f message-generator-job.yaml 
 
-kd run wait job/${NAME}-${DEPLOYED_AT} --for=condition=complete
+echo "Sleeping 30 secs"
+sleep 30
 
 kd --timeout 3m \
     --delete \

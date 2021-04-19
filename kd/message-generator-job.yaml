@@ -3,13 +3,13 @@ kind: Job
 metadata:
   name: {{.NAME}}-{{.DEPLOYED_AT}}
   labels:
-    name: {{.NAME}}-{{.DEPLOYED_AT}}
+    name: {{.NAME}}
     version: {{.VERSION}}
 spec:
   template:
     metadata:
       labels:
-        name: {{.NAME}}-{{.DEPLOYED_AT}}
+        name: {{.NAME}}
         role: hocs-backend
         version: {{.VERSION}}
     spec:
